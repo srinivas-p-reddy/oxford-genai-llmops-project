@@ -12,6 +12,15 @@ from controllers import retrieval, health_check, generation
 from sentence_transformers import SentenceTransformer
 from server.src.config import Settings
 import opik
+from dotenv import load_dotenv
+import os
+
+# Force load the .env file from project root or rag-app folder
+# Try loading both from rag-app and project root (for Docker/dev containers)
+load_dotenv(dotenv_path=os.path.abspath(".env"))
+load_dotenv(dotenv_path=os.path.abspath("../.env"))  # fallback
+# print("path is :", dotenv_path)
+print("DEBUG: ENV KEY =", os.getenv("OPENAI_API_KEY"))
 
 # Async context manager to load in models I want to keep in memory for the app to use.
 @asynccontextmanager

@@ -17,7 +17,10 @@ install:
 
 # Run the FastAPI app
 run-app:
-	poetry run bash -c 'PYTHONPATH=$(SERVER_DIR)/src uvicorn server.src.main:app --reload'
+	@echo "Starting RAG app..."
+	@bash -c 'set -a && source .env && set +a && export PYTHONPATH=./server/src && poetry run uvicorn server.src.main:app --reload'
+
+
 
 run-client:
 	poetry run streamlit run client/streamlit_app.py

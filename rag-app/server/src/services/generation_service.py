@@ -12,7 +12,8 @@ import opik
 import openai
 from openai import OpenAI
 
-client = OpenAI()
+# client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 @opik.track  # TODO: test if this works with async methods? I think it will.
 def call_llm(prompt: str) -> Union[Dict, None]:
