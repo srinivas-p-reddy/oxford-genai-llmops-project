@@ -1,7 +1,18 @@
 import pytest
+import sys
 from server.src.services.generation_service import generate_response
 from unittest.mock import patch
 
+# rag-app/tests/conftest.py
+import os
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../.env.test'))
+
+@pytest.fixture(autouse=True, scope="session")
+def disable_opik():
+    """Automatically disable opik during tests."""
+    sys.modules["opik"] = __import__("types").SimpleNamespace(configure=lambda: None)
 
 @pytest.fixture
 def mock_query():
