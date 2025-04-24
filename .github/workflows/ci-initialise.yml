@@ -1,0 +1,17 @@
+name: CI Initialise
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  run-initial-step:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print hello message
+        run: echo "CI step initialising"
