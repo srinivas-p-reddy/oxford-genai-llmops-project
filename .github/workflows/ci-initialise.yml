@@ -1,21 +1,52 @@
-- name: Run tests with pytest
-  run: |
-    cd rag-app
-    OPENAI_API_KEY=dummy-key \
-    OPENAI_MODEL=gpt-3.5-turbo \
-    environment=local \
-    app_name=rag-app \
-    debug=true \
-    postgres_host=localhost \
-    postgres_db=rag \
-    postgres_user=rag_user \
-    postgres_password=pass \
-    arxiv_api_url=https://example.com \
-    data_path=papers-downloads \
-    temperature=0.7 \
-    top_p=1.0 \
-    max_tokens=256 \
-    opik_api_key=abc \
-    opik_workspace=test \
-    opik_project_name=test \
-    poetry run pytest
+name: CI with Pytest
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Poetry and Add to PATH
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          cd rag-app
+          poetry install
+
+      - name: Run tests with pytest
+        env:
+          OPENAI_API_KEY: dummy-key
+          OPENAI_MODEL: gpt-3.5-turbo
+          environment: local
+          app_name: rag-app
+          debug: true
+          postgres_host: localhost
+          postgres_db: rag
+          postgres_user: rag_user
+          postgres_password: password
+          arxiv_api_url: https://example.com
+          data_path: papers-downloads
+          temperature: '0.7'
+          top_p: '1.0'
+          max_tokens: '256'
+          opik_api_key: abc
+          opik_workspace: test
+          opik_project_name: test
+        run: |
+          cd rag-app
+          poetry run pytest
