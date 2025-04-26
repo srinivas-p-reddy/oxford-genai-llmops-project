@@ -44,7 +44,7 @@ jobs:
           temperature: '0.7'
           top_p: '1.0'
           max_tokens: '256'
-          opik_api_key: abc
+          opik_api_key: 'nmJ4x4uF1w2nO5Jvk87PGRtIv'
           opik_workspace: test
           opik_project_name: test
         run: |
