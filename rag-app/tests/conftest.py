@@ -15,9 +15,9 @@ def mock_query():
 def mock_chunks():
     """Fixture to provide mock retrieved document chunks for generation tests."""
     return [
-        {"text": "Perovskite materials are used in solar cells."},
-        {"text": "Perovskites have unique electronic properties."},
-        {"text": "The efficiency of perovskite solar cells has improved."},
+        {"chunk": "Perovskite materials are used in solar cells."},
+        {"chunk": "Perovskites have unique electronic properties."},
+        {"chunk": "The efficiency of perovskite solar cells has improved."},
     ]
 
 @pytest.fixture
