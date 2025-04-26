@@ -9,10 +9,10 @@ from dotenv import load_dotenv
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../.env.test'))
 
-@pytest.fixture(autouse=True, scope="session")
-def disable_opik():
-    """Automatically mock opik module during all tests to prevent real API calls."""
-    sys.modules["opik"] = MagicMock()
+# @pytest.fixture(autouse=True, scope="session")
+# def disable_opik():
+#     """Automatically mock opik module during all tests to prevent real API calls."""
+#     sys.modules["opik"] = MagicMock()
 
 @pytest.fixture
 def mock_query():
