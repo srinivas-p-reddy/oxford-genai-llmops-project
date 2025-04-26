@@ -3,7 +3,7 @@ from server.src.services.retrieval_service import retrieve_top_k_chunks
 from dotenv import load_dotenv
 import os
 
-# TODO: update to use BaseSettings implementation
+# Load environment variables
 load_dotenv()
 
 DATA_PATH = os.getenv("DATA_PATH")
@@ -17,15 +17,12 @@ db_config = {
     "port": os.environ.get("POSTGRES_PORT"),
 }
 
-# Test function for the retrieval service - your postgres instance needs to be running.
-# @pytest.mark.asyncio
+# Test function for the retrieval service
 @pytest.mark.skip(reason="Skipping DB connection test in CI environment")
-async def test_retrieve_top_k_chunks():
-    # Mock query and top_k value
+def test_retrieve_top_k_chunks():
     query = "perovskite"
     top_k = 5
 
-    # Call the function
     try:
         documents = retrieve_top_k_chunks(query, top_k, db_config)
 

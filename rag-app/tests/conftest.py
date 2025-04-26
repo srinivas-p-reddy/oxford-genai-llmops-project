@@ -1,24 +1,15 @@
 import pytest
-import sys
-from server.src.services.generation_service import generate_response
-from unittest.mock import patch
-
-# rag-app/tests/conftest.py
 import os
 from dotenv import load_dotenv
+from unittest.mock import patch
 
+# Load test-specific environment variables
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../.env.test'))
-
-# @pytest.fixture(autouse=True, scope="session")
-# def disable_opik():
-#     """Automatically mock opik module during all tests to prevent real API calls."""
-#     sys.modules["opik"] = MagicMock()
 
 @pytest.fixture
 def mock_query():
     """Fixture to provide a sample query for testing."""
     return "Tell me about perovskites in solar cells."
-
 
 @pytest.fixture
 def mock_chunks():
@@ -29,7 +20,6 @@ def mock_chunks():
         {"text": "The efficiency of perovskite solar cells has improved."},
     ]
 
-
 @pytest.fixture
 def mock_config():
     """Fixture for mock configuration settings."""
@@ -37,7 +27,6 @@ def mock_config():
         "max_tokens": 150,
         "temperature": 0.7,
     }
-
 
 @pytest.fixture
 def mock_generate_response():
