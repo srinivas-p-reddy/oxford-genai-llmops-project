@@ -18,7 +18,8 @@ db_config = {
 }
 
 # Test function for the retrieval service - your postgres instance needs to be running.
-@pytest.mark.asyncio
+# @pytest.mark.asyncio
+@pytest.mark.skip(reason="Skipping DB connection test in CI environment")
 async def test_retrieve_top_k_chunks():
     # Mock query and top_k value
     query = "perovskite"

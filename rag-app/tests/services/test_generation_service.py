@@ -103,9 +103,9 @@ async def test_generate_response_high_temperature(
     )
 
     # Call the function with a high temperature setting
-    response = generate_response(
+    response = asyncio.run(generate_response(
         mock_query, mock_chunks, max_tokens=150, temperature=1.5
-    )
+    ))
 
     # Assertions
     assert isinstance(response, str), "Response should still be a string."
@@ -136,9 +136,9 @@ async def test_generate_response_long_query(mock_chunks, mock_generate_response)
     )
 
     # Call the generate_response function with the long query
-    response = generate_response(
+    response = asyncio.run(generate_response(
         long_query, mock_chunks, max_tokens=150, temperature=0.7
-    )
+    ))
 
     # Assertions
     assert "Perovskites" in response, "Response should handle long query without error."
@@ -170,9 +170,9 @@ async def test_generate_response_with_multiple_chunks(
     )
 
     # Call the function with multiple chunks
-    response = generate_response(
+    response = asyncio.run(generate_response(
         mock_query, mock_chunks, max_tokens=150, temperature=0.7
-    )
+    ))
 
     # Assertions
     assert "used in solar cells" in response
