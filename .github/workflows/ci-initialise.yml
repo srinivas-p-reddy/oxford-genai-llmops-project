@@ -45,8 +45,8 @@ jobs:
           top_p: '1.0'
           max_tokens: '256'
           opik_api_key: 'nmJ4x4uF1w2nO5Jvk87PGRtIv'
-          opik_workspace: test
-          opik_project_name: test
+          opik_workspace: 'sri1506'
+          opik_project_name: 'oxford-llmops'
         run: |
           cd rag-app
           poetry run pytest
