@@ -11,8 +11,8 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../.env.test'))
 
 @pytest.fixture(autouse=True, scope="session")
 def disable_opik():
-    """Automatically disable opik during tests."""
-    sys.modules["opik"] = __import__("types").SimpleNamespace(configure=lambda: None)
+    """Automatically mock opik module during all tests to prevent real API calls."""
+    sys.modules["opik"] = MagicMock()
 
 @pytest.fixture
 def mock_query():
